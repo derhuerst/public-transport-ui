@@ -1,0 +1,37 @@
+{
+	"name": "public-transport-ui",
+	"description": "UI components for rendering public transport data.",
+	"version": "1.0.0",
+	"main": "index.js",
+	"files": [
+		"index.js",
+		"example.js"
+	],
+	"keywords": [
+		"ui",
+		"component",
+		"public transport",
+		"departures",
+		"journeys",
+		"transit",
+		"trains"
+	],
+	"author": "Jannis R <mail@jannisr.de>",
+	"homepage": "https://github.com/derhuerst/public-transport-ui",
+	"repository": "derhuerst/public-transport-ui",
+	"bugs": "https://github.com/derhuerst/public-transport-ui/issues",
+	"license": "ISC",
+	"engines": {
+		"node": ">=6"
+	},
+	"dependencies": {
+	},
+	"devDependencies": {
+		"tap-spec": "^5.0.0",
+		"tape": "^4.9.1"
+	},
+	"scripts": {
+		"test": "env NODE_ENV=dev node test.js | tap-spec",
+		"prepublishOnly": "npm test"
+	}
+}
