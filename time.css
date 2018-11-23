@@ -1,0 +1,17 @@
+.pt-time {
+	display: inline-block;
+}
+
+.pt-time-delay {
+	margin-left: .2em;
+	white-space: nowrap;
+}
+
+.pt-time--onTime .pt-time-delay {
+	color: #2ecc71;
+}
+.pt-time--delayed .pt-time-delay,
+.pt-time--early .pt-time-delay,
+.pt-time--cancelled {
+	color: #c0392b;
+}

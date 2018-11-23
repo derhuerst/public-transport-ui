@@ -4,8 +4,8 @@
 	"version": "1.0.0",
 	"main": "index.js",
 	"files": [
-		"index.js",
-		"example.js"
+		"*.js",
+		"lib"
 	],
 	"keywords": [
 		"ui",
@@ -25,6 +25,8 @@
 		"node": ">=6"
 	},
 	"dependencies": {
+		"luxon": "^1.8.0",
+		"ms": "^2.1.1"
 	},
 	"devDependencies": {
 		"tap-spec": "^5.0.0",
