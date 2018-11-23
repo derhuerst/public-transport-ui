@@ -30,10 +30,11 @@
 	},
 	"devDependencies": {
 		"tap-spec": "^5.0.0",
-		"tape": "^4.9.1"
+		"tape": "^4.9.1",
+		"virtual-dom": "^2.1.1"
 	},
 	"scripts": {
-		"test": "env NODE_ENV=dev node test.js | tap-spec",
+		"test": "env NODE_ENV=dev node test/index.js | tap-spec",
 		"prepublishOnly": "npm test"
 	}
 }

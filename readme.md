@@ -1,6 +1,6 @@
 # public-transport-ui
 
-**UI components for rendering public transport data**, e.g. departures.
+**Web UI components for rendering public transport data**, e.g. departures. Heavily biased towards Germany right now.
 
 [![npm version](https://img.shields.io/npm/v/public-transport-ui.svg)](https://www.npmjs.com/package/public-transport-ui)
 [![build status](https://api.travis-ci.org/derhuerst/public-transport-ui.svg?branch=master)](https://travis-ci.org/derhuerst/public-transport-ui)
@@ -21,6 +21,42 @@ npm install public-transport-ui
 ```js
 todo
 ```
+
+
+## Components
+
+### `/time` – arrival/departure time
+
+Accepts the [arrival/departure time markup of `hafas-client`](https://github.com/public-transport/hafas-client/blob/1ebb958b4a65128f2bf640e182d3c1333a6508fc/docs/departures.md#response).
+
+```js
+const createRenderDepartureTime = require('public-transport-ui/time')
+const h = require('virtual-dom') // React.createElement, etc
+
+const timezone = 'Europe/Berlin'
+const locale = 'de-DE'
+
+const renderDepartureTime = createRenderDepartureTime({}, {h, timezone, locale})
+const tree = renderDepartureTime({
+	when: '2018-11-22T18:05:20+0100',
+	delay: 5 * 60 + 20
+})
+```
+
+```html
+<span className="pt-time pt-time--realtime pt-time--delayed">
+	<time datetime="2018-11-22T17:00:00.000Z">18:00</time>
+	<span className="pt-time-delay" title="5 minutes late">+5m</span>
+</span>
+```
+
+- `.pt-time` – class of the wrapping `<span>`
+- `.pt-time--realtime` – if it has realtime data
+- `.pt-time--onTime` – if it is exactly on time
+- `.pt-time--delayed` – if it not on time
+- `.pt-time--early` – if it is too early
+- `.pt-time--cancelled` – if it has been cancelled
+- `.pt-time-delay` – class of the delay `<span>`
 
 
 ## Contributing
