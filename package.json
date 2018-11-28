@@ -5,7 +5,8 @@
 	"main": "index.js",
 	"files": [
 		"*.js",
-		"lib"
+		"lib",
+		"h"
 	],
 	"keywords": [
 		"ui",
@@ -29,6 +30,7 @@
 		"ms": "^2.1.1"
 	},
 	"devDependencies": {
+		"h2ml": "^1.1.0",
 		"tap-spec": "^5.0.0",
 		"tape": "^4.9.1",
 		"virtual-dom": "^2.1.1"

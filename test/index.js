@@ -1,6 +1,7 @@
 'use strict'
 
 const run = require('tape')
+const h2ml = require('h2ml')
 const vDom = require('virtual-dom/h')
 
 const timeFixtures = require('./fixtures/time')
@@ -10,6 +11,7 @@ const departureFixtures = require('./fixtures/departure')
 const createRenderTime = require('../time')
 const createRenderArrival = require('../arrival')
 const createRenderDeparture = require('../departure')
+const withH2mlCompatibility = require('../h/h2ml')
 
 const timezone = 'Europe/Berlin'
 const locale = 'de-DE'
@@ -60,4 +62,5 @@ const testFixturesWith = (libName, h) => {
 	}
 }
 
+testFixturesWith('h2ml', withH2mlCompatibility(h2ml))
 testFixturesWith('virtual-dom', vDom)
