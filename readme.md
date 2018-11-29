@@ -58,6 +58,45 @@ const tree = renderDepartureTime({
 - `.pt-time--cancelled` – if it has been cancelled
 - `.pt-time-delay` – class of the delay `<span>`
 
+### `/arrival` & `/departure`
+
+Accept the [arrival/departure markup of `hafas-client`](https://github.com/public-transport/hafas-client/blob/1ebb958b4a65128f2bf640e182d3c1333a6508fc/docs/departures.md#response).
+
+```js
+const createRenderDeparture = require('public-transport-ui/departure')
+const h = require('virtual-dom') // React.createElement, etc
+
+const timezone = 'Europe/Berlin'
+const locale = 'de-DE'
+
+const renderDeparture = createRenderDeparture({h, timezone, locale})
+const tree = renderDeparture({
+	when: '2018-11-22T18:05:20+0100',
+	delay: 5 * 60 + 20,
+	line: {type: 'line', name: 'foo'},
+	direction: 'bar'
+})
+```
+
+```html
+<tr class="pt-departure">
+	<td class="pt-departure-when">
+		<!-- time component -->
+	</td>
+	<td class="pt-departure-line">
+		<!-- line component -->
+	</td>
+	<td class="pt-departure-direction">
+		<!-- direction component -->
+	</td>
+</tr>
+```
+
+- `.pt-arrival`/`.pt-departure` – class of the wrapping `<tr>`
+- `.pt-arrival-when`/`.pt-departure-when` – class of the when `<td>`
+- `.pt-arrival-line`/`.pt-departure-line` – class of the line `<td>`
+- `.pt-arrival-direction`/`.pt-departure-direction` – class of the direction `<td>`
+
 
 ## Contributing
 
