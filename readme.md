@@ -22,6 +22,24 @@ npm install public-transport-ui
 todo
 ```
 
+### CSS
+
+**Make sure to serve the CSS of each component that you use**, e.g. by bundling them together. Let's say you use the components `public-transport-ui/time` and `public-transport-ui/arrival-or-departure` in your app:
+
+```js
+# create-css-bundle.js
+const {readCSSSync} = require('public-transport-ui/build/read-css')
+
+process.stdout.write([
+	readCSSSync('time'),
+	readCSSSync('arrival-or-departure')
+].join('\n\n'))
+```
+
+```shell
+node create-css-bundle.js >public-transport-ui.css
+```
+
 
 ## Components
 

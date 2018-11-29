@@ -6,7 +6,8 @@
 	"files": [
 		"*.js",
 		"lib",
-		"h"
+		"h",
+		"build"
 	],
 	"keywords": [
 		"ui",
@@ -31,6 +32,7 @@
 	},
 	"devDependencies": {
 		"h2ml": "^1.1.0",
+		"lodash": "^4.17.11",
 		"tap-spec": "^5.0.0",
 		"tape": "^4.9.1",
 		"virtual-dom": "^2.1.1"
