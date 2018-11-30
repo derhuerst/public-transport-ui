@@ -1,6 +1,8 @@
 # public-transport-ui
 
-**Web UI components for rendering public transport data**, e.g. departures. Heavily biased towards Germany right now.
+**Web UI components for rendering public transport data**, e.g. departures.
+
+They are heavily biased towards Germany and have a quite specific UI right now. Help me make this lib more general and useful by [opening an issue](https://github.com/derhuerst/public-transport-ui/issues)!
 
 [![npm version](https://img.shields.io/npm/v/public-transport-ui.svg)](https://www.npmjs.com/package/public-transport-ui)
 [![build status](https://api.travis-ci.org/derhuerst/public-transport-ui.svg?branch=master)](https://travis-ci.org/derhuerst/public-transport-ui)
@@ -16,11 +18,77 @@ npm install public-transport-ui
 ```
 
 
-## Usage
+## Getting Started
+
+You can use `public-transport-ui` with a number of [`React.createElement`](https://reactjs.org/docs/react-without-jsx.html)-/[JSX](http://facebook.github.io/jsx/)-compatible `h(tagName, props, children)` library. This makes it a lot more flexible, but also more complex. You will have to pass an `h()` function into `public-transport-ui`.
+
+[React](https://reactjs.org/):
 
 ```js
-todo
+const h = require('react').createElement
 ```
+
+[`virtual-dom`](https://www.npmjs.com/package/virtual-dom):
+
+```js
+const h = require('virtual-dom')
+```
+
+[`h2ml`](https://www.npmjs.com/package/h2ml):
+
+```js
+const h2mlAdapter = require('public-transport-ui')
+const h2ml = require('h2ml')
+const h = h2mlAdapter(h2ml)
+```
+
+Using the appropriate `h()` function, let's now render a departure of a vehicle:
+
+```js
+const createRender = require('public-transport-ui')
+
+const render = createRender({
+	h, // see above
+	timezone: 'Europe/Berlin',
+	locale: 'de-DE'
+})
+
+const departure = render.departure({
+	when: '2018-11-22T18:05:20+0100',
+	delay: 5 * 60 + 20,
+	line: {type: 'line', name: 'foo'},
+	direction: 'bar'
+})
+```
+
+### With JSX
+
+[JSX](http://facebook.github.io/jsx/) is a syntax extension to write in [a more readable and compact way](https://reactjs.org/docs/jsx-in-depth.html), well-known because it is the preferred way to write [React](https://reactjs.org/) components. Technically, it is independent of React, so you can use it with [preact](https://preactjs.com), [hyperscript](https://github.com/hyperhype/hyperscript) or [mercury](http://raynos.github.io/mercury/) as well.
+
+As an example, we're going to use React & JSX:
+
+```jsx
+/** @jsx h */
+const h = require('react').createElement
+const createRender = require('public-transport-ui')
+
+const render = createRender({
+	h,
+	timezone: 'Europe/Berlin',
+	locale: 'de-DE'
+})
+
+const MyComponent = (props) => {
+	return (
+		<section>
+			{render.departure(someDeparture)}
+		</section>
+	);
+}
+```
+
+
+## Usage
 
 ### CSS
 
@@ -49,10 +117,6 @@ Accepts the [arrival/departure time markup of `hafas-client`](https://github.com
 
 ```js
 const createRenderDepartureTime = require('public-transport-ui/time')
-const h = require('virtual-dom') // React.createElement, etc
-
-const timezone = 'Europe/Berlin'
-const locale = 'de-DE'
 
 const renderDepartureTime = createRenderDepartureTime({}, {h, timezone, locale})
 const tree = renderDepartureTime({
@@ -82,10 +146,6 @@ Accept the [arrival/departure markup of `hafas-client`](https://github.com/publi
 
 ```js
 const createRenderDeparture = require('public-transport-ui/departure')
-const h = require('virtual-dom') // React.createElement, etc
-
-const timezone = 'Europe/Berlin'
-const locale = 'de-DE'
 
 const renderDeparture = createRenderDeparture({h, timezone, locale})
 const tree = renderDeparture({
